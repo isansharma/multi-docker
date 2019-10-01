@@ -1,0 +1,23 @@
+sudo: required
+services:
+  - docker
+
+before_install:
+  - docker build -t isansharma/react-test -f ./client/Dockerfile.dev ./client
+
+script:
+  - docker run isansharma/react-test npm test -- --coverage
+
+after_success:
+  - docker build -t isansharma/multi-client ./client
+  - docker build -t isansharma/multi-nginx ./nginx
+  - docker build -t isansharma/multi-server ./server
+  - docker build -t isansharma/multi-worker ./worker
+  #login to the docker cli
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+  # take those images and push to docker hub
+  - docker push isansharma/multi-client
+  - docker push isansharma/multi-nginx
+  - docker push isansharma/multi-server
+  - docker push isansharma/multi-worker
+  - docker push isansharma/react-test

@@ -1,0 +1,18 @@
+
+4.add the Dockerfile to worker and server and nginx directory
+5.create a folder called nginx inside client and add default.conf
+6.create a Dockerfile inside client
+7. delete 3 line in 'it' in App.test.js in client
+8.go to complex directory and $git init and add and commit it
+9.create a github repo 'multi-docker' and copy the repo path and 
+ #git remote add origin <rep path in github>
+ #git remote -v
+ #git push origin master
+10. go to travis-ci.org
+11. create a .travis.yml file in root directory
+12.login to docker account
+   #docker login 
+	if error occures do run this
+	#rm /usr/bin/docker-credential-secretservice
+13 add DOCKER_ID and DOCKER _PASSWORD environment variable to travis-ci . got to setting
+14. commit .travis.yml file to github
